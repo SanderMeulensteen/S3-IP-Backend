@@ -1,7 +1,13 @@
 package com.example.superelf.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table
 public class Player {
-    private Long id;
+    @javax.persistence.Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String name;
     private String clubname;
     private String position;
@@ -9,7 +15,7 @@ public class Player {
     public Player() {
     }
 
-    public Player(Long id, String name, String clubname, String position) {
+    public Player(Integer id, String name, String clubname, String position) {
         this.id = id;
         this.name = name;
         this.clubname = clubname;
@@ -22,11 +28,11 @@ public class Player {
         this.position = position;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
