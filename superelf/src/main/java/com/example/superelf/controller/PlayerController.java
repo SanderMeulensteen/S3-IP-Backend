@@ -5,6 +5,7 @@ import com.example.superelf.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @RestController
@@ -26,5 +27,19 @@ public class PlayerController {
     @PostMapping
     public void addNewPlayer(@RequestBody Player player){
         playerService.addNewPlayer(player);
+    }
+
+    @DeleteMapping(path = "{playerId}")
+    public void deletePlayer(@PathVariable("playerId") Integer playerId){
+        playerService.deleteStudent(playerId);
+    }
+
+    @PutMapping(path = "{playerId}")
+    public void updatePlayer(@PathVariable("playerId") Integer playerId,
+                             @RequestParam(required = false) String name,
+                             @RequestParam(required = false) Integer clubId,
+                             @RequestParam(required = false) String position
+                             ){
+        playerService.updateStudent(playerId, clubId, name, position);
     }
 }
