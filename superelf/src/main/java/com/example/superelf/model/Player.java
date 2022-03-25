@@ -3,28 +3,28 @@ package com.example.superelf.model;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name = "players")
 public class Player {
-    @javax.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private Integer clubId;
     private String name;
-    private String clubname;
     private String position;
 
     public Player() {
     }
 
-    public Player(Integer id, String name, String clubname, String position) {
+    public Player(Integer id, String name, Integer clubId, String position) {
         this.id = id;
         this.name = name;
-        this.clubname = clubname;
+        this.clubId = clubId;
         this.position = position;
     }
 
-    public Player(String name, String clubname, String position) {
+    public Player(String name, Integer clubId, String position) {
         this.name = name;
-        this.clubname = clubname;
+        this.clubId = clubId;
         this.position = position;
     }
 
@@ -44,12 +44,12 @@ public class Player {
         this.name = name;
     }
 
-    public String getClubname() {
-        return clubname;
+    public Integer getClubId() {
+        return clubId;
     }
 
-    public void setClubname(String clubname) {
-        this.clubname = clubname;
+    public void setClubId(Integer clubId) {
+        this.clubId = clubId;
     }
 
     public String getPosition() {
@@ -65,7 +65,7 @@ public class Player {
         return "Player{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", clubName='" + clubname + '\'' +
+                ", clubId='" + clubId + '\'' +
                 ", position='" + position + '\'' +
                 '}';
     }

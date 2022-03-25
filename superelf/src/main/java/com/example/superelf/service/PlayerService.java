@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PlayerService {
@@ -22,6 +23,11 @@ public class PlayerService {
     }
 
     public void addNewPlayer(Player player) {
-        System.out.println(player);
+        Optional<Player> playerByName = playerRepository
+                .findPlayerByName(player.getName());
+        if(playerByName.isPresent()) {
+            throw new IllegalStateException("Player name already in use");
+        }
+        playerRepository.save(player);
     }
 }
