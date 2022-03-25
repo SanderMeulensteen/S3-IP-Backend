@@ -38,7 +38,7 @@ public class PlayerController {
     public void updatePlayer(@PathVariable("playerId") Integer playerId,
                              @RequestParam(required = false) String name,
                              @RequestParam(required = false) Integer clubId,
-                             @RequestParam(required = false) String position
+                             @RequestParam(required = false) Integer position
                              ){
         playerService.updateStudent(playerId, clubId, name, position);
     }

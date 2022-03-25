@@ -42,7 +42,7 @@ public class PlayerService {
     }
 
     @Transactional
-    public void updateStudent(Integer playerId, Integer clubId, String name, String position) {
+    public void updateStudent(Integer playerId, Integer clubId, String name, Integer position) {
         Player player = playerRepository.findById(playerId)
                 .orElseThrow(()-> new IllegalStateException(
                         "Player with id " + playerId + " does not exist"));
@@ -53,7 +53,7 @@ public class PlayerService {
         if(name != null && name.length() > 0 && !Objects.equals(player.getName(), name)){
             player.setName(name);
         }
-        if(position != null && position.length() > 0 && !Objects.equals(player.getPosition(), position)){
+        if(position != null && position != 0 && !Objects.equals(player.getPosition(), position)){
             player.setPosition(position);
         }
     }

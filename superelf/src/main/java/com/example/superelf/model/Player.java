@@ -10,19 +10,19 @@ public class Player {
     private Integer id;
     private Integer clubId;
     private String name;
-    private String position;
+    private Integer position;
 
     public Player() {
     }
 
-    public Player(Integer id, String name, Integer clubId, String position) {
+    public Player(Integer id, String name, Integer clubId, Integer position) {
         this.id = id;
         this.name = name;
         this.clubId = clubId;
         this.position = position;
     }
 
-    public Player(String name, Integer clubId, String position) {
+    public Player(String name, Integer clubId, Integer position) {
         this.name = name;
         this.clubId = clubId;
         this.position = position;
@@ -52,11 +52,11 @@ public class Player {
         this.clubId = clubId;
     }
 
-    public String getPosition() {
+    public Integer getPosition() {
         return position;
     }
 
-    public void setPosition(String position) {
+    public void setPosition(Integer position) {
         this.position = position;
     }
 
