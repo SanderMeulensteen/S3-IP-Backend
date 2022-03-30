@@ -53,7 +53,7 @@ public class PlayerService {
         if(name != null && name.length() > 0 && !Objects.equals(player.getName(), name)){
             player.setName(name);
         }
-        if(position != null && position != 0 && !Objects.equals(player.getPosition(), position)){
+        if(position != null && (position >= 0 && position <=3 ) && !Objects.equals(player.getPosition(), position)){
             player.setPosition(position);
         }
     }
