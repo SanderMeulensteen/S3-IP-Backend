@@ -18,6 +18,10 @@ public class PositionService {
     }
 
     public Position getPositionById(Integer Id) {
+        boolean exists = positionRepository.existsById(Id);
+        if(!exists) {
+            throw new IllegalStateException("Position with id " + Id + " does not exist");
+        }
         return positionRepository.getById(Id);
     }
 }

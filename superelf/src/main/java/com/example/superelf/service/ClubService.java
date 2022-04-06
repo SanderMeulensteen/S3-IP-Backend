@@ -5,6 +5,8 @@ import com.example.superelf.repositories.IClubRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ClubService {
 
@@ -16,6 +18,10 @@ public class ClubService {
     }
 
     public Club getClubById(Integer Id) {
+        boolean exists = clubRepository.existsById(Id);
+        if(!exists) {
+            throw new IllegalStateException("Club with id " + Id + " does not exist");
+        }
         return clubRepository.getById(Id);
     }
 }

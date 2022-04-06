@@ -26,7 +26,7 @@ public class PlayerService {
         return playerRepository.findAll();
     }
 
-    public Optional<Player> getPlayerById(Integer playerId) {
+    public Optional<Player> findPlayerById(Integer playerId) {
         boolean exists = playerRepository.existsById(playerId);
         if(!exists) {
             throw new IllegalStateException("Player with id " + playerId + " does not exist");

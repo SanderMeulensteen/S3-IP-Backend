@@ -35,7 +35,7 @@ public class PlayerController {
 
     @GetMapping(path = "{playerId}")
     public Optional<Player> getPlayerById(@PathVariable("playerId") Integer playerId){
-        return playerService.getPlayerById(playerId);
+        return playerService.findPlayerById(playerId);
     }
 
     @PostMapping
