@@ -8,23 +8,27 @@ public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer clubId;
     private String name;
-    private Integer position;
+    @ManyToOne
+    @JoinColumn(name="positionId", referencedColumnName = "id", nullable = false)
+    private Position position;
+    @ManyToOne
+    @JoinColumn(name="clubId", referencedColumnName = "id", nullable = false)
+    private Club club;
 
     public Player() {
     }
 
-    public Player(Integer id, String name, Integer clubId, Integer position) {
+    public Player(Integer id, String name, Club club, Position position) {
         this.id = id;
         this.name = name;
-        this.clubId = clubId;
+        this.club = club;
         this.position = position;
     }
 
-    public Player(String name, Integer clubId, Integer position) {
+    public Player(String name, Club club, Position position) {
         this.name = name;
-        this.clubId = clubId;
+        this.club = club;
         this.position = position;
     }
 
@@ -44,19 +48,19 @@ public class Player {
         this.name = name;
     }
 
-    public Integer getClubId() {
-        return clubId;
+    public Club getClub() {
+        return club;
     }
 
-    public void setClubId(Integer clubId) {
-        this.clubId = clubId;
+    public void setClub(Club club) {
+        this.club = club;
     }
 
-    public Integer getPosition() {
+    public Position getPosition() {
         return position;
     }
 
-    public void setPosition(Integer position) {
+    public void setPosition(Position position) {
         this.position = position;
     }
 
@@ -65,7 +69,7 @@ public class Player {
         return "Player{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", clubId='" + clubId + '\'' +
+                ", club='" + club + '\'' +
                 ", position='" + position + '\'' +
                 '}';
     }

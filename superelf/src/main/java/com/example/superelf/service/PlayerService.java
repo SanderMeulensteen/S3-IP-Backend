@@ -1,6 +1,8 @@
 package com.example.superelf.service;
 
+import com.example.superelf.model.Club;
 import com.example.superelf.model.Player;
+import com.example.superelf.model.Position;
 import com.example.superelf.repositories.IPlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,14 @@ public class PlayerService {
         return playerRepository.findAll();
     }
 
+    public Optional<Player> getPlayerById(Integer playerId) {
+        boolean exists = playerRepository.existsById(playerId);
+        if(!exists) {
+            throw new IllegalStateException("Player with id " + playerId + " does not exist");
+        }
+        return playerRepository.findById(playerId);
+    }
+
     public void addNewPlayer(Player player) {
         Optional<Player> playerByName = playerRepository
                 .findPlayerByName(player.getName());
@@ -33,7 +43,7 @@ public class PlayerService {
         playerRepository.save(player);
     }
 
-    public void deleteStudent(Integer playerId) {
+    public void deletePlayer(Integer playerId) {
         boolean exists = playerRepository.existsById(playerId);
         if(!exists) {
             throw new IllegalStateException("Player with id " + playerId + " does not exist");
@@ -42,18 +52,18 @@ public class PlayerService {
     }
 
     @Transactional
-    public void updateStudent(Integer playerId, Integer clubId, String name, Integer position) {
+    public void updatePlayer(Integer playerId, Club club, String name, Position position) {
         Player player = playerRepository.findById(playerId)
                 .orElseThrow(()-> new IllegalStateException(
                         "Player with id " + playerId + " does not exist"));
 
-        if(clubId != null && clubId != 0){
-            player.setClubId(clubId);
+        if(club != null){
+            player.setClub(club);
         }
         if(name != null && name.length() > 0 && !Objects.equals(player.getName(), name)){
             player.setName(name);
         }
-        if(position != null && (position >= 0 && position <=3 ) && !Objects.equals(player.getPosition(), position)){
+        if(position != null && !Objects.equals(player.getPosition(), position)){
             player.setPosition(position);
         }
     }
