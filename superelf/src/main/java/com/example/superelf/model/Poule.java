@@ -1,6 +1,7 @@
 package com.example.superelf.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "poules")
@@ -9,9 +10,13 @@ public class Poule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String pouleName;
+
     @ManyToOne
     @JoinColumn(name = "competitionId", referencedColumnName = "id", nullable = false)
     private Competition competition;
+
+    @ManyToMany(mappedBy="pouleTeam")
+    Set<Team> teamPoule;
 
     public Poule() {
     }

@@ -1,6 +1,7 @@
 package com.example.superelf.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "teams")
@@ -9,12 +10,28 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer teamPoints;
+
     @ManyToOne
     @JoinColumn(name="userId", referencedColumnName = "id", nullable = false)
     private User user;
+
     @ManyToOne
     @JoinColumn(name="formationId", referencedColumnName = "id", nullable = false)
     private Formation formation;
+
+    @ManyToMany
+    @JoinTable(
+            name="player_team",
+            joinColumns = @JoinColumn(name="teamId"),
+            inverseJoinColumns = @JoinColumn(name="playerId"))
+    Set<Player> playerTeam;
+
+    @ManyToMany
+    @JoinTable(
+            name="poule_team",
+            joinColumns = @JoinColumn(name="teamId"),
+            inverseJoinColumns = @JoinColumn(name="pouleId"))
+    Set<Poule> pouleTeam;
 
     public Team() {
     }

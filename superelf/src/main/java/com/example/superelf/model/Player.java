@@ -10,14 +10,20 @@ public class Player {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+
     @ManyToOne
     @JoinColumn(name="positionId", referencedColumnName = "id", nullable = false)
     private Position position;
+
     @ManyToOne
     @JoinColumn(name="clubId", referencedColumnName = "id", nullable = false)
     private Club club;
-    @OneToMany(mappedBy = "player")
+
+    @OneToMany(mappedBy="player")
     private Set<Matchround> matchround;
+
+    @ManyToMany(mappedBy="playerTeam")
+    Set<Team> teamPlayer;
 
     public Player() {
     }
