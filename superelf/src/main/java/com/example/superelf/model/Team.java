@@ -8,23 +8,27 @@ public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer userId;
-    private Integer formationId;
     private Integer teamPoints;
+    @ManyToOne
+    @JoinColumn(name="userId", referencedColumnName = "id", nullable = false)
+    private User user;
+    @ManyToOne
+    @JoinColumn(name="formationId", referencedColumnName = "id", nullable = false)
+    private Formation formation;
 
     public Team() {
     }
 
-    public Team(Integer id, Integer userId, Integer formationId, Integer teamPoints) {
+    public Team(Integer id, User user, Formation formation, Integer teamPoints) {
         this.id = id;
-        this.userId = userId;
-        this.formationId = formationId;
+        this.user = user;
+        this.formation = formation;
         this.teamPoints = teamPoints;
     }
 
-    public Team(Integer userId, Integer formationId, Integer teamPoints) {
-        this.userId = userId;
-        this.formationId = formationId;
+    public Team(User user, Formation formationId, Integer teamPoints) {
+        this.user = user;
+        this.formation = formationId;
         this.teamPoints = teamPoints;
     }
 
@@ -36,20 +40,20 @@ public class Team {
         this.id = id;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Integer getFormationId() {
-        return formationId;
+    public Formation getFormation() {
+        return formation;
     }
 
-    public void setFormationId(Integer formationId) {
-        this.formationId = formationId;
+    public void setFormation(Formation formation) {
+        this.formation = formation;
     }
 
     public Integer getTeamPoints() {
@@ -64,8 +68,8 @@ public class Team {
     public String toString() {
         return "Team{" +
                 "id=" + id +
-                ", userId=" + userId +
-                ", formationId=" + formationId +
+                ", user=" + user +
+                ", formation=" + formation +
                 ", teamPoints=" + teamPoints +
                 '}';
     }

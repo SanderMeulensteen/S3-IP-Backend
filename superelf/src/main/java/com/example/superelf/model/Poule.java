@@ -8,20 +8,22 @@ public class Poule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer competitionId;
     private String pouleName;
+    @ManyToOne
+    @JoinColumn(name = "competitionId", referencedColumnName = "id", nullable = false)
+    private Competition competition;
 
     public Poule() {
     }
 
-    public Poule(Integer id, Integer competitionId, String pouleName) {
+    public Poule(Integer id, Competition competition, String pouleName) {
         this.id = id;
-        this.competitionId = competitionId;
+        this.competition = competition;
         this.pouleName = pouleName;
     }
 
-    public Poule(Integer competitionId, String pouleName) {
-        this.competitionId = competitionId;
+    public Poule(Competition competitionId, String pouleName) {
+        this.competition = competitionId;
         this.pouleName = pouleName;
     }
 
@@ -33,12 +35,12 @@ public class Poule {
         this.id = id;
     }
 
-    public Integer getCompetitionId() {
-        return competitionId;
+    public Competition getCompetition() {
+        return competition;
     }
 
-    public void setCompetitionId(Integer competitionId) {
-        this.competitionId = competitionId;
+    public void setCompetition(Competition competition) {
+        this.competition = competition;
     }
 
     public String getPouleName() {
@@ -53,7 +55,7 @@ public class Poule {
     public String toString() {
         return "Poule{" +
                 "id=" + id +
-                ", competitionId=" + competitionId +
+                ", competition=" + competition +
                 ", pouleName='" + pouleName + '\'' +
                 '}';
     }

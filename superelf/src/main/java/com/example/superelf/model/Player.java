@@ -1,6 +1,7 @@
 package com.example.superelf.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "players")
@@ -15,6 +16,8 @@ public class Player {
     @ManyToOne
     @JoinColumn(name="clubId", referencedColumnName = "id", nullable = false)
     private Club club;
+    @OneToMany(mappedBy = "player")
+    private Set<Matchround> matchround;
 
     public Player() {
     }

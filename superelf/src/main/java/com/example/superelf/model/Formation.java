@@ -1,6 +1,7 @@
 package com.example.superelf.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "formations")
@@ -12,6 +13,8 @@ public class Formation {
     private Integer defenders;
     private Integer midfielders;
     private Integer forwards;
+    @OneToMany(mappedBy = "formation")
+    private Set<Team> team;
 
     public Formation() {
     }

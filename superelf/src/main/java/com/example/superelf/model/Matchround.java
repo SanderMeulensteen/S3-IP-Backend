@@ -8,24 +8,26 @@ public class Matchround {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer playerId;
     private Integer points;
     private Integer weekNumber;
     private Integer season;
+    @ManyToOne
+    @JoinColumn(name="playerId", referencedColumnName = "id", nullable = false)
+    private Player player;
 
     public Matchround() {
     }
 
-    public Matchround(Integer id, Integer playerId, Integer points, Integer weekNumber, Integer season) {
+    public Matchround(Integer id, Player player, Integer points, Integer weekNumber, Integer season) {
         this.id = id;
-        this.playerId = playerId;
+        this.player = player;
         this.points = points;
         this.weekNumber = weekNumber;
         this.season = season;
     }
 
-    public Matchround(Integer playerId, Integer points, Integer weekNumber, Integer season) {
-        this.playerId = playerId;
+    public Matchround(Player player, Integer points, Integer weekNumber, Integer season) {
+        this.player = player;
         this.points = points;
         this.weekNumber = weekNumber;
         this.season = season;
@@ -39,12 +41,12 @@ public class Matchround {
         this.id = id;
     }
 
-    public Integer getPlayerId() {
-        return playerId;
+    public Player getPlayer() {
+        return player;
     }
 
-    public void setPlayerId(Integer playerId) {
-        this.playerId = playerId;
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
     public Integer getPoints() {
@@ -75,7 +77,7 @@ public class Matchround {
     public String toString() {
         return "Matchround{" +
                 "id=" + id +
-                ", playerId=" + playerId +
+                ", player=" + player +
                 ", points=" + points +
                 ", weekNumber=" + weekNumber +
                 ", season=" + season +

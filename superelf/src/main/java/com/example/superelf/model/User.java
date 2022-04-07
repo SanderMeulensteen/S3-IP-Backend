@@ -1,6 +1,7 @@
 package com.example.superelf.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -8,14 +9,17 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String emailAddress;
     private String userName;
     private String firstName;
     private String lastName;
+    @Column(nullable = false)
     private String password;
     private Boolean isAdmin;
     private Boolean isModerator;
+    @OneToMany(mappedBy = "user")
+    private Set<Team> team;
 
     public User() {
     }

@@ -9,8 +9,10 @@ public class Club {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer competitionId;
     private String clubName;
+    @ManyToOne
+    @JoinColumn(name = "competitionId", referencedColumnName = "id", nullable = false)
+    private Competition competition;
     @OneToMany(mappedBy = "club")
     private Set<Player> player;
 
@@ -18,14 +20,14 @@ public class Club {
     public Club() {
     }
 
-    public Club(Integer id, Integer competitionId, String clubName) {
+    public Club(Integer id, Competition competition, String clubName) {
         this.id = id;
-        this.competitionId = competitionId;
+        this.competition = competition;
         this.clubName = clubName;
     }
 
-    public Club(Integer competitionId, String clubName) {
-        this.competitionId = competitionId;
+    public Club(Competition competition, String clubName) {
+        this.competition = competition;
         this.clubName = clubName;
     }
 
@@ -37,12 +39,12 @@ public class Club {
         this.id = id;
     }
 
-    public Integer getCompetitionId() {
-        return competitionId;
+    public Competition getCompetition() {
+        return competition;
     }
 
-    public void setCompetitionId(Integer competitionId) {
-        this.competitionId = competitionId;
+    public void setCompetition(Competition competition) {
+        this.competition = competition;
     }
 
     public String getClubName() {
@@ -57,7 +59,7 @@ public class Club {
     public String toString() {
         return "Club{" +
                 "id=" + id +
-                ", competitionId=" + competitionId +
+                ", competition=" + competition +
                 ", clubName='" + clubName + '\'' +
                 '}';
     }

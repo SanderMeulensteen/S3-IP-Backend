@@ -1,6 +1,7 @@
 package com.example.superelf.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "competitions")
@@ -9,6 +10,10 @@ public class Competition {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String competitionName;
+    @OneToMany(mappedBy = "competition")
+    private Set<Club> club;
+    @OneToMany(mappedBy = "competition")
+    private Set<Poule> poule;
 
     public Competition() {
     }
