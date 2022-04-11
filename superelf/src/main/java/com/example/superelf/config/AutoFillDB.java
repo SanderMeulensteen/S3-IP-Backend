@@ -58,15 +58,15 @@ public class AutoFillDB {
 //            place some players in DB
             Player mario = new Player (
                     "Mario Götze",
-                    clubService.getClubById(1),
+                    clubService.getClubById(2),
                     positionService.getPositionById(3));
             Player antony = new Player (
                     "Antony",
-                    clubService.getClubById(2),
+                    clubService.getClubById(3),
                     positionService.getPositionById(4));
             Player cody = new Player (
                     "Cody Gakpo",
-                    clubService.getClubById(1),
+                    clubService.getClubById(2),
                     positionService.getPositionById(4));
             playerRepository.saveAll(List.of(mario,antony,cody));
         };

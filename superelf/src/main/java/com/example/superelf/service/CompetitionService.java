@@ -6,6 +6,8 @@ import com.example.superelf.repositories.ICompetitionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CompetitionService {
 
@@ -22,5 +24,9 @@ public class CompetitionService {
             throw new IllegalStateException("Competition with id " + Id + " does not exist");
         }
         return competitionRepository.getById(Id);
+    }
+
+    public List<Competition> getCompetitions() {
+        return competitionRepository.findAll();
     }
 }

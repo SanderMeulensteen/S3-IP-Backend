@@ -1,11 +1,14 @@
 package com.example.superelf.service;
 
 import com.example.superelf.model.Club;
+import com.example.superelf.model.Player;
 import com.example.superelf.model.Position;
 import com.example.superelf.repositories.IClubRepository;
 import com.example.superelf.repositories.IPositionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class PositionService {
@@ -23,5 +26,9 @@ public class PositionService {
             throw new IllegalStateException("Position with id " + Id + " does not exist");
         }
         return positionRepository.getById(Id);
+    }
+
+    public List<Position> getPositions() {
+            return positionRepository.findAll();
     }
 }
