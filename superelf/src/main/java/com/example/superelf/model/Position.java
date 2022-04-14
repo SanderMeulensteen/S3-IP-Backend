@@ -8,10 +8,10 @@ import java.util.Set;
 public class Position {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String positionName;
+    public Integer id;
+    public String positionName;
     @OneToMany(mappedBy = "position")
-    private Set<Player> player;
+    public Set<Player> player;
 
     public Position() {
     }

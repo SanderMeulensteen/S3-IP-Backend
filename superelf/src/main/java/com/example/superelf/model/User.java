@@ -8,18 +8,18 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    public Integer id;
     @Column(unique = true, nullable = false)
-    private String emailAddress;
-    private String userName;
-    private String firstName;
-    private String lastName;
+    public String emailAddress;
+    public String userName;
+    public String firstName;
+    public String lastName;
     @Column(nullable = false)
-    private String password;
-    private Boolean isAdmin;
-    private Boolean isModerator;
+    public String password;
+    public Boolean isAdmin;
+    public Boolean isModerator;
     @OneToMany(mappedBy = "user")
-    private Set<Team> team;
+    public Set<Team> team;
 
     public User() {
     }

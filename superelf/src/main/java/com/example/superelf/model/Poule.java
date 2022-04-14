@@ -8,12 +8,12 @@ import java.util.Set;
 public class Poule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String pouleName;
+    public Integer id;
+    public String pouleName;
 
     @ManyToOne
     @JoinColumn(name = "competitionId", referencedColumnName = "id", nullable = false)
-    private Competition competition;
+    public Competition competition;
 
     @ManyToMany(mappedBy="pouleTeam")
     Set<Team> teamPoule;

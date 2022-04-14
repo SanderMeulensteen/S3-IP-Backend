@@ -7,13 +7,13 @@ import javax.persistence.*;
 public class Matchround {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private Integer points;
-    private Integer weekNumber;
-    private Integer season;
+    public Integer id;
+    public Integer points;
+    public Integer weekNumber;
+    public Integer season;
     @ManyToOne
     @JoinColumn(name="playerId", referencedColumnName = "id", nullable = false)
-    private Player player;
+    public Player player;
 
     public Matchround() {
     }

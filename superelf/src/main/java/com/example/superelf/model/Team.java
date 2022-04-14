@@ -8,16 +8,16 @@ import java.util.Set;
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private Integer teamPoints;
+    public Integer id;
+    public Integer teamPoints;
 
     @ManyToOne
     @JoinColumn(name="userId", referencedColumnName = "id", nullable = false)
-    private User user;
+    public User user;
 
     @ManyToOne
     @JoinColumn(name="formationId", referencedColumnName = "id", nullable = false)
-    private Formation formation;
+    public Formation formation;
 
     @ManyToMany
     @JoinTable(

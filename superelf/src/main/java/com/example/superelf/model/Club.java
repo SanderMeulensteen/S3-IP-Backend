@@ -8,13 +8,13 @@ import java.util.Set;
 public class Club {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String clubName;
+    public Integer id;
+    public String clubName;
     @ManyToOne
     @JoinColumn(name = "competitionId", referencedColumnName = "id", nullable = false)
-    private Competition competition;
+    public Competition competition;
     @OneToMany(mappedBy = "club")
-    private Set<Player> player;
+    public Set<Player> player;
 
 
     public Club() {

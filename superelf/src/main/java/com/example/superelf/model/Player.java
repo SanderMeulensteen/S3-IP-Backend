@@ -8,19 +8,19 @@ import java.util.Set;
 public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String name;
+    public Integer id;
+    public String name;
 
     @ManyToOne
     @JoinColumn(name="positionId", referencedColumnName = "id", nullable = false)
-    private Position position;
+    public Position position;
 
     @ManyToOne
     @JoinColumn(name="clubId", referencedColumnName = "id", nullable = false)
-    private Club club;
+    public Club club;
 
     @OneToMany(mappedBy="player")
-    private Set<Matchround> matchround;
+    public Set<Matchround> matchround;
 
     @ManyToMany(mappedBy="playerTeam")
     Set<Team> teamPlayer;

@@ -8,13 +8,13 @@ import java.util.Set;
 public class Formation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String formationName;
-    private Integer defenders;
-    private Integer midfielders;
-    private Integer forwards;
+    public Integer id;
+    public String formationName;
+    public Integer defenders;
+    public Integer midfielders;
+    public Integer forwards;
     @OneToMany(mappedBy = "formation")
-    private Set<Team> team;
+    public Set<Team> team;
 
     public Formation() {
     }

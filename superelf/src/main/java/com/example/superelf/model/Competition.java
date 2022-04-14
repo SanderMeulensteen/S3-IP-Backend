@@ -8,12 +8,12 @@ import java.util.Set;
 public class Competition {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String competitionName;
+    public Integer id;
+    public String competitionName;
     @OneToMany(mappedBy = "competition")
-    private Set<Club> club;
+    public Set<Club> club;
     @OneToMany(mappedBy = "competition")
-    private Set<Poule> poule;
+    public Set<Poule> poule;
 
     public Competition() {
     }
