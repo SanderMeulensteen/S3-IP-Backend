@@ -7,6 +7,8 @@ import com.example.superelf.service.ClubService;
 import com.example.superelf.service.PlayerService;
 import com.example.superelf.service.PositionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,28 +41,30 @@ public class PlayerController {
     }
 
     @PostMapping
-    public void addNewPlayer(@RequestParam(required = true) String name,
-                             @RequestParam(required = true) Integer clubId,
-                             @RequestParam(required = true) Integer positionId){
-        Club club = clubService.getClubById(clubId);
-        Position position = positionService.getPositionById(positionId);
-        Player player = new Player(name,club,position);
-       playerService.addNewPlayer(player);
+    public ResponseEntity<String> addNewPlayer(@RequestBody Player player){
+        Club club = clubService.getClubById(player.club.id);
+        Position position = positionService.getPositionById(player.position.id);
+        player.setClub(club);
+        player.setPosition(position);
+        playerService.addNewPlayer(player);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body("{ \"id\": "+ player.id + " }");
     }
 
     @DeleteMapping(path = "{playerId}")
-    public void deletePlayer(@PathVariable("playerId") Integer playerId){
+    public ResponseEntity<String> deletePlayer(@PathVariable("playerId") Integer playerId){
         playerService.deletePlayer(playerId);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body("{ \"id\": "+ playerId + " }");
     }
 
     @PutMapping(path = "{playerId}")
-    public void updatePlayer(@PathVariable("playerId") Integer playerId,
-                             @RequestParam(required = false) String name,
-                             @RequestParam(required = false) Integer clubId,
-                             @RequestParam(required = false) Integer positionId
-                             ){
-        Club club = clubService.getClubById(clubId);
-        Position position = positionService.getPositionById(positionId);
-        playerService.updatePlayer(playerId, club, name, position);
+    public ResponseEntity<String> updatePlayer(@PathVariable("playerId") Integer playerId,
+                                       @RequestBody Player player){
+        Club club = clubService.getClubById(player.club.id);
+        Position position = positionService.getPositionById(player.position.id);
+        playerService.updatePlayer(playerId, club, player.name, position);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body("{ \"id\": "+ playerId + " }");
     }
 }

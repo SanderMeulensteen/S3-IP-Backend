@@ -20,7 +20,7 @@ public class Player {
     public Club club;
 
     @OneToMany(mappedBy="player")
-    public Set<Matchround> matchround;
+    private Set<Matchround> matchround;
 
     @ManyToMany(mappedBy="playerTeam")
     Set<Team> teamPlayer;

@@ -14,7 +14,7 @@ public class Formation {
     public Integer midfielders;
     public Integer forwards;
     @OneToMany(mappedBy = "formation")
-    public Set<Team> team;
+    private Set<Team> team;
 
     public Formation() {
     }

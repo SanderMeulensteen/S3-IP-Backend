@@ -11,7 +11,7 @@ public class Position {
     public Integer id;
     public String positionName;
     @OneToMany(mappedBy = "position")
-    public Set<Player> player;
+    private Set<Player> player;
 
     public Position() {
     }

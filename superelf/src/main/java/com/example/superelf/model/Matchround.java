@@ -13,7 +13,7 @@ public class Matchround {
     public Integer season;
     @ManyToOne
     @JoinColumn(name="playerId", referencedColumnName = "id", nullable = false)
-    public Player player;
+    private Player player;
 
     public Matchround() {
     }

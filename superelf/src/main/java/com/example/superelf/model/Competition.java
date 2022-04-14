@@ -11,9 +11,9 @@ public class Competition {
     public Integer id;
     public String competitionName;
     @OneToMany(mappedBy = "competition")
-    public Set<Club> club;
+    private Set<Club> club;
     @OneToMany(mappedBy = "competition")
-    public Set<Poule> poule;
+    private Set<Poule> poule;
 
     public Competition() {
     }

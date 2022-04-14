@@ -13,11 +13,11 @@ public class Team {
 
     @ManyToOne
     @JoinColumn(name="userId", referencedColumnName = "id", nullable = false)
-    public User user;
+    private User user;
 
     @ManyToOne
     @JoinColumn(name="formationId", referencedColumnName = "id", nullable = false)
-    public Formation formation;
+    private Formation formation;
 
     @ManyToMany
     @JoinTable(

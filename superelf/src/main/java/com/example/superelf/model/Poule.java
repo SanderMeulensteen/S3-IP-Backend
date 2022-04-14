@@ -13,7 +13,7 @@ public class Poule {
 
     @ManyToOne
     @JoinColumn(name = "competitionId", referencedColumnName = "id", nullable = false)
-    public Competition competition;
+    private Competition competition;
 
     @ManyToMany(mappedBy="pouleTeam")
     Set<Team> teamPoule;

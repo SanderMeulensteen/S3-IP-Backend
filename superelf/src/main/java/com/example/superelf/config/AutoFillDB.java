@@ -1,17 +1,8 @@
 package com.example.superelf.config;
 
-import com.example.superelf.model.Club;
-import com.example.superelf.model.Competition;
-import com.example.superelf.model.Player;
-import com.example.superelf.model.Position;
-import com.example.superelf.repositories.IClubRepository;
-import com.example.superelf.repositories.ICompetitionRepository;
-import com.example.superelf.repositories.IPlayerRepository;
-import com.example.superelf.repositories.IPositionRepository;
-import com.example.superelf.service.ClubService;
-import com.example.superelf.service.CompetitionService;
-import com.example.superelf.service.PlayerService;
-import com.example.superelf.service.PositionService;
+import com.example.superelf.model.*;
+import com.example.superelf.repositories.*;
+import com.example.superelf.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -25,12 +16,16 @@ public class AutoFillDB {
     private final ClubService clubService;
     private final PositionService positionService;
     private final CompetitionService competitionService;
+    private final FormationService formationService;
+    private final PlayerService playerService;
 
     @Autowired
-    public AutoFillDB(PlayerService playerService, ClubService clubService, PositionService positionService, CompetitionService competitionService) {
+    public AutoFillDB(PlayerService playerService, ClubService clubService, PositionService positionService, CompetitionService competitionService, FormationService formationService) {
+        this.playerService = playerService;
         this.clubService = clubService;
         this.positionService = positionService;
         this.competitionService = competitionService;
+        this.formationService = formationService;
     }
 
     @Bean
@@ -38,7 +33,8 @@ public class AutoFillDB {
             IPositionRepository positionRepository,
             IClubRepository clubRepository,
             IPlayerRepository playerRepository,
-            ICompetitionRepository competitionRepository){
+            ICompetitionRepository competitionRepository,
+            IFormationRepository formationRepository){
         return args -> {
 //            place positions in DB
             Position goalkeeper = new Position("Goalkeeper");
@@ -69,6 +65,23 @@ public class AutoFillDB {
                     clubService.getClubById(2),
                     positionService.getPositionById(4));
             playerRepository.saveAll(List.of(mario,antony,cody));
+//            place some formations in DB
+            Formation fourthreethree = new Formation(
+                    "4-3-3",
+                    4,
+                    3,
+                    3);
+            Formation fourfourtwo = new Formation(
+                    "4-4-2",
+                    4,
+                    4,
+                    2);
+            Formation threefourthree = new Formation(
+                    "3-4-3",
+                    3,
+                    4,
+                    3);
+            formationRepository.saveAll(List.of(fourthreethree, fourfourtwo, threefourthree));
         };
     }
 }

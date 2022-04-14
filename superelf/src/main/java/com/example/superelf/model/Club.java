@@ -14,7 +14,7 @@ public class Club {
     @JoinColumn(name = "competitionId", referencedColumnName = "id", nullable = false)
     public Competition competition;
     @OneToMany(mappedBy = "club")
-    public Set<Player> player;
+    private Set<Player> player;
 
 
     public Club() {

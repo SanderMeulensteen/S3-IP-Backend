@@ -19,7 +19,7 @@ public class User {
     public Boolean isAdmin;
     public Boolean isModerator;
     @OneToMany(mappedBy = "user")
-    public Set<Team> team;
+    private Set<Team> team;
 
     public User() {
     }
