@@ -27,7 +27,7 @@ public class ClubService {
     public Club getClubById(Integer Id) {
         boolean exists = clubRepository.existsById(Id);
         if(!exists) {
-            throw new IllegalStateException("Club with id " + Id + " does not exist");
+            throw new IllegalStateException("Club with id " + Id + " does not exist!");
         }
         return clubRepository.getById(Id);
     }
@@ -39,7 +39,7 @@ public class ClubService {
     public Optional<Club> findClubById(Integer clubId) {
         boolean exists = clubRepository.existsById(clubId);
         if(!exists) {
-            throw new IllegalStateException("Club with id " + clubId + " does not exist");
+            throw new IllegalStateException("Club with id " + clubId + " does not exist!");
         }
         return clubRepository.findById(clubId);
     }
@@ -48,7 +48,7 @@ public class ClubService {
         Optional<Club> clubByName = clubRepository
                 .findClubByName(club.getClubName());
         if(clubByName.isPresent()) {
-            throw new IllegalStateException("Club name already in use");
+            throw new IllegalStateException("Club name already in use!");
         }
         clubRepository.save(club);
     }
@@ -56,22 +56,28 @@ public class ClubService {
     public void deleteClub(Integer clubId) {
         boolean exists = clubRepository.existsById(clubId);
         if(!exists) {
-            throw new IllegalStateException("Club with id " + clubId + " does not exist");
+            throw new IllegalStateException("Club with id " + clubId + " does not exist!");
         }
-        for (Player player : playerService.getPlayers()) {
-            Club club = getClubById(1);
-            if(player.club.id == clubId){
-                player.setClub(club);
+        if(clubId != 1){
+            for (Player player : playerService.getPlayers()) {
+                Club club = getClubById(1);
+                if(player.club.id == clubId){
+                    player.setClub(club);
+                }
             }
+            clubRepository.deleteById(clubId);
         }
-        clubRepository.deleteById(clubId);
+        else{
+            throw new IllegalStateException("This club cannot be deleted!");
+        }
+
     }
 
     @Transactional
     public void updateClub(Integer clubId, Competition competition, String clubName) {
         Club club = clubRepository.findById(clubId)
                 .orElseThrow(()-> new IllegalStateException(
-                        "Club with id " + clubId + " does not exist"));
+                        "Club with id " + clubId + " does not exist!"));
 
         if(competition != null){
             club.setCompetition(competition);

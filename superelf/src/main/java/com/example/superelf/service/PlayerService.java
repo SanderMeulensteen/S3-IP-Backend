@@ -29,7 +29,7 @@ public class PlayerService {
     public Optional<Player> findPlayerById(Integer playerId) {
         boolean exists = playerRepository.existsById(playerId);
         if(!exists) {
-            throw new IllegalStateException("Player with id " + playerId + " does not exist");
+            throw new IllegalStateException("Player with id " + playerId + " does not exist!");
         }
         return playerRepository.findById(playerId);
     }
@@ -38,7 +38,7 @@ public class PlayerService {
         Optional<Player> playerByName = playerRepository
                 .findPlayerByName(player.getName());
         if(playerByName.isPresent()) {
-            throw new IllegalStateException("Player name already in use");
+            throw new IllegalStateException("Player name already in use!");
         }
         playerRepository.save(player);
     }
@@ -46,7 +46,7 @@ public class PlayerService {
     public void deletePlayer(Integer playerId) {
         boolean exists = playerRepository.existsById(playerId);
         if(!exists) {
-            throw new IllegalStateException("Player with id " + playerId + " does not exist");
+            throw new IllegalStateException("Player with id " + playerId + " does not exist!");
         }
         playerRepository.deleteById(playerId);
     }
@@ -55,7 +55,7 @@ public class PlayerService {
     public void updatePlayer(Integer playerId, Club club, String name, Position position) {
         Player player = playerRepository.findById(playerId)
                 .orElseThrow(()-> new IllegalStateException(
-                        "Player with id " + playerId + " does not exist"));
+                        "Player with id " + playerId + " does not exist!"));
 
         if(club != null){
             player.setClub(club);

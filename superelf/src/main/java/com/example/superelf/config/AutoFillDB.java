@@ -37,11 +37,12 @@ public class AutoFillDB {
             IFormationRepository formationRepository){
         return args -> {
 //            place positions in DB
+            Position noPosition = new Position("No Position");
             Position goalkeeper = new Position("Goalkeeper");
             Position defender = new Position("Defender");
             Position midfielder = new Position("Midfielder");
             Position forward = new Position("Forward");
-            positionRepository.saveAll(List.of(goalkeeper,defender,midfielder,forward));
+            positionRepository.saveAll(List.of(noPosition,goalkeeper,defender,midfielder,forward));
 //            place some competitions in DB
             Competition noCompetition = new Competition("No Competition");
             Competition eredivisie = new Competition("Eredivisie");

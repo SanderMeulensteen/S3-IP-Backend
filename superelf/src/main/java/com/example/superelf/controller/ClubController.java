@@ -2,8 +2,6 @@ package com.example.superelf.controller;
 
 import com.example.superelf.model.Club;
 import com.example.superelf.model.Competition;
-import com.example.superelf.model.Player;
-import com.example.superelf.model.Position;
 import com.example.superelf.service.ClubService;
 import com.example.superelf.service.CompetitionService;
 import org.springframework.beans.factory.annotation.Autowired;

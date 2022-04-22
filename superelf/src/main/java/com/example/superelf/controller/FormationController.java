@@ -1,9 +1,6 @@
 package com.example.superelf.controller;
 
-import com.example.superelf.model.Club;
-import com.example.superelf.model.Competition;
 import com.example.superelf.model.Formation;
-import com.example.superelf.service.CompetitionService;
 import com.example.superelf.service.FormationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
